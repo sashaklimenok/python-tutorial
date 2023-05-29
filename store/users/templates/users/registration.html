@@ -3,13 +3,13 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-7">
+      {% if forms.errors %}
       <div
         class="alert alert-warning alert-dismissible fade show"
         role="alert"
         style="margin-top: 50px"
       >
-        <strong>Holy guacamole!</strong> You should check in on some of those
-        fields below.
+        {{ forms.errors }}
         <button
           type="button"
           class="close"
@@ -19,23 +19,32 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      {% endif %}
       <div class="card shadow-lg border-0 rounded-lg mt-5">
         <div class="card-header">
           <h3 class="text-center font-weight-light my-4">Создать аккаунт</h3>
         </div>
         <div class="card-body">
-          <form action="{% url 'users:registration' %}" method='post'>
+          <form action="{% url 'users:registration' %}" method="post">
             {% csrf_token %}
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="small mb-1" for="{{forms.first_name.id_for_label}}">Имя</label>
+                  <label
+                    class="small mb-1"
+                    for="{{forms.first_name.id_for_label}}"
+                    >Имя</label
+                  >
                   {{ forms.first_name }}
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="small mb-1" for="{{forms.last_name.id_for_label}}">Фамилия</label>
+                  <label
+                    class="small mb-1"
+                    for="{{forms.last_name.id_for_label}}"
+                    >Фамилия</label
+                  >
                   {{ forms.last_name }}
                 </div>
               </div>
@@ -57,13 +66,19 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="small mb-1" for="{{forms.password1.id_for_label}}">Пароль</label>
+                  <label
+                    class="small mb-1"
+                    for="{{forms.password1.id_for_label}}"
+                    >Пароль</label
+                  >
                   {{ forms.password1 }}
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="small mb-1" for="{{forms.password2.id_for_label}}"
+                  <label
+                    class="small mb-1"
+                    for="{{forms.password2.id_for_label}}"
                     >Подтверждение пароля</label
                   >
                   {{ forms.password2 }}
@@ -81,7 +96,9 @@
         </div>
         <div class="card-footer text-center">
           <div class="small">
-            <a href="{% url 'users:login' %}">Уже есть аккаунт? Авторизоваться</a>
+            <a href="{% url 'users:login' %}"
+              >Уже есть аккаунт? Авторизоваться</a
+            >
           </div>
         </div>
       </div>
